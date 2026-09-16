@@ -1029,9 +1029,13 @@ nav {
 }
 .reviews-layout {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: start;
+}
+.review-video {
+  max-width: 380px;
+  margin: 0 auto;
 }
 .review-video-caption {
   margin-top: 12px;
@@ -1041,14 +1045,14 @@ nav {
 }
 .review-thanks-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 .review-thanks-item {
   border: 1px solid var(--border);
   border-radius: 3px;
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   background: var(--surface);
 }
 .review-thanks-item img {
