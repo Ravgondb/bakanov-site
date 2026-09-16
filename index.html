@@ -1033,25 +1033,67 @@ nav {
   gap: 24px;
   align-items: start;
 }
-.review-video-caption {
+.review-caption {
   margin-top: 12px;
   font-family: var(--f-mono);
   font-size: 12px;
   color: var(--muted);
 }
-.review-thanks-item {
+.review-media {
+  height: 440px;
   border: 1px solid var(--border);
   border-radius: 3px;
   overflow: hidden;
   background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.review-thanks-item img {
+.review-media video,
+.review-media img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
+.reviews-carousel-wrap { position: relative; }
+.reviews-arrow { display: none; }
 @media (max-width: 768px) {
-  .reviews-layout { grid-template-columns: 1fr; }
+  .review-media { height: 360px; }
+  .reviews-layout {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 4px;
+  }
+  .reviews-layout::-webkit-scrollbar { display: none; }
+  .reviews-layout > * {
+    flex: 0 0 88%;
+    scroll-snap-align: center;
+  }
+  .reviews-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .reviews-arrow-prev { left: -2px; }
+  .reviews-arrow-next { right: -2px; }
 }
 .quote-box {
   background: rgba(249,115,22,.04);
@@ -2132,16 +2174,29 @@ footer {
       Благодарности моих клиентов.
     </p>
 
-    <div class="reviews-layout">
-      <div class="review-video reveal">
-        <video controls preload="metadata" poster="bigtow-review-poster.jpg" style="width:100%; display:block; border-radius:3px; border:1px solid var(--border); background:var(--surface)">
-          <source src="bigtow-review.mp4" type="video/mp4">
-        </video>
-        <div class="review-video-caption">Сергей, «Эвакуация 24/7» — эвакуатор в Зеленограде и Москве</div>
-      </div>
+    <div class="reviews-carousel-wrap">
+      <button class="reviews-arrow reviews-arrow-prev" aria-label="Предыдущий отзыв" onclick="reviewsScroll(-1)">‹</button>
+      <div class="reviews-layout" id="reviews-track">
+        <div class="review-item reveal">
+          <div class="review-media">
+            <video controls preload="metadata" poster="bigtow-review-poster.jpg">
+              <source src="bigtow-review.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="review-caption">Сергей, «Эвакуация 24/7» — эвакуатор в Зеленограде и Москве</div>
+        </div>
 
-      <div class="review-thanks-item reveal reveal-delay-1"><img src="thanks1.jpg" alt="Благодарность клиента" loading="lazy" /></div>
-      <div class="review-thanks-item reveal reveal-delay-2"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+        <div class="review-item reveal reveal-delay-1">
+          <div class="review-media"><img src="thanks1.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+          <div class="review-caption">Ольга Субботина — «Добрые часы здоровья»</div>
+        </div>
+
+        <div class="review-item reveal reveal-delay-2">
+          <div class="review-media"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+          <div class="review-caption">Мария Дядькина — «Вай Тай СПА»</div>
+        </div>
+      </div>
+      <button class="reviews-arrow reviews-arrow-next" aria-label="Следующий отзыв" onclick="reviewsScroll(1)">›</button>
     </div>
   </div>
 </section>
@@ -2600,6 +2655,16 @@ const countObserver = new IntersectionObserver(entries => {
   });
 });
 document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+/* ── Reviews carousel (mobile) ─────────── */
+function reviewsScroll(dir) {
+  const track = document.getElementById('reviews-track');
+  if (!track) return;
+  const item = track.children[0];
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  const width = item.getBoundingClientRect().width + gap;
+  track.scrollBy({ left: dir * width, behavior: 'smooth' });
+}
 
 /* ── Form ────────────────────────────── */
 function handleForm(e) {
