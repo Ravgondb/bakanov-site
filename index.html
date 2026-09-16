@@ -653,6 +653,7 @@ nav {
 }
 .prod-icon { font-size: 40px; display: block; margin-bottom: 16px; }
 .prod-name { font-family: var(--f-display); font-size: 26px; margin-bottom: 6px; }
+.prod-head a:hover .prod-name { color: var(--accent); }
 .prod-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 .prod-body { padding: 28px 36px 36px; }
 .prod-list {
@@ -2096,8 +2097,10 @@ footer {
             <span class="prod-badge">Для эвакуаторов</span>
           </div>
           <span class="prod-icon" style="font-size:32px; font-family:var(--f-display); color:var(--accent)">TOW</span>
-          <div class="prod-name">БИГТОУ</div>
-          <div class="prod-desc">Заказ эвакуатора по геолокации — клиент ставит точку на карте, диспетчер получает заявку мгновенно</div>
+          <a href="https://bigtow.ru/" target="_blank" onclick="ym(108697060,'reachGoal','click_bigtow')" style="text-decoration:none; color:inherit;">
+            <div class="prod-name" style="display:inline-flex; align-items:center; gap:8px;">Эвакуация 24/7</div>
+          </a>
+          <div class="prod-desc">Сайт для круглосуточной эвакуации авто с определением точной геолокации</div>
         </div>
         <div class="prod-body">
           <ul class="prod-list">
@@ -2133,15 +2136,15 @@ footer {
       <span class="outline">ВЕРИТЬ НА СЛОВО</span>
     </h2>
     <p style="font-size:17px; color:var(--muted); margin-bottom:64px; max-width:560px" class="reveal">
-      Сергей — владелец БИГТОУ — о том, как прошла разработка сервиса и что получилось в итоге.
+      Видео от Сергея — владельца сервиса «Эвакуация 24/7» — и благодарственные письма от других клиентов.
     </p>
 
     <div class="reviews-layout">
       <div class="review-video reveal">
-        <video controls poster="bigtow-review-poster.jpg" style="width:100%; display:block; border-radius:3px; border:1px solid var(--border); background:var(--surface)">
+        <video controls preload="metadata" poster="bigtow-review-poster.jpg" style="width:100%; display:block; border-radius:3px; border:1px solid var(--border); background:var(--surface)">
           <source src="bigtow-review.mp4" type="video/mp4">
         </video>
-        <div class="review-video-caption">Сергей, БИГТОУ — эвакуатор в Зеленограде и Москве</div>
+        <div class="review-video-caption">Сергей, «Эвакуация 24/7» — эвакуатор в Зеленограде и Москве</div>
       </div>
 
       <div class="review-thanks-grid reveal reveal-delay-1">
