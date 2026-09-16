@@ -1029,24 +1029,15 @@ nav {
 }
 .reviews-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   align-items: start;
-}
-.review-video {
-  max-width: 380px;
-  margin: 0 auto;
 }
 .review-video-caption {
   margin-top: 12px;
   font-family: var(--f-mono);
   font-size: 12px;
   color: var(--muted);
-}
-.review-thanks-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
 }
 .review-thanks-item {
   border: 1px solid var(--border);
@@ -2149,10 +2140,8 @@ footer {
         <div class="review-video-caption">Сергей, «Эвакуация 24/7» — эвакуатор в Зеленограде и Москве</div>
       </div>
 
-      <div class="review-thanks-grid reveal reveal-delay-1">
-        <div class="review-thanks-item"><img src="thanks1.jpg" alt="Благодарность клиента" loading="lazy" /></div>
-        <div class="review-thanks-item"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
-      </div>
+      <div class="review-thanks-item reveal reveal-delay-1"><img src="thanks1.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+      <div class="review-thanks-item reveal reveal-delay-2"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
     </div>
   </div>
 </section>
