@@ -618,7 +618,7 @@ nav {
 ═══════════════════════════════════════════ */
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 .prod {
@@ -1025,6 +1025,39 @@ nav {
   align-items: flex-end;
   gap: 20px;
   flex-shrink: 0;
+}
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.review-video-caption {
+  margin-top: 12px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.review-thanks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.review-thanks-item {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--surface);
+}
+.review-thanks-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 768px) {
+  .reviews-layout { grid-template-columns: 1fr; }
 }
 .quote-box {
   background: rgba(249,115,22,.04);
@@ -1705,6 +1738,7 @@ footer {
       <li><a href="#lecture">Лекция</a></li>
       <li><a href="#numbers">Результаты</a></li>
       <li><a href="#products">Продукты</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
       <li><a href="#about">О себе</a></li>
     </ul>
     <a href="#contacts" class="btn btn-primary nav-cta" onclick="ym(108697060,'reachGoal','click_nav_contact')">Связаться</a>
@@ -2006,7 +2040,7 @@ footer {
       <span class="outline">РАССКАЗЫВАЮ</span>
     </h2>
     <p style="font-size:17px; color:var(--muted); margin-bottom:64px; max-width:560px" class="reveal">
-      Два рабочих продукта, созданных с помощью ИИ — живой пример того, о чём говорю на лекциях.
+      Три рабочих продукта, созданных с помощью ИИ — живой пример того, о чём говорю на лекциях.
     </p>
     <div class="products-grid">
       <div class="prod reveal">
@@ -2054,6 +2088,27 @@ footer {
           </div>
         </div>
       </div>
+
+      <div class="prod reveal reveal-delay-2">
+        <div class="prod-head">
+          <div class="prod-eyebrow">
+            <span>Веб-сервис</span>
+            <span class="prod-badge">Для эвакуаторов</span>
+          </div>
+          <span class="prod-icon" style="font-size:32px; font-family:var(--f-display); color:var(--accent)">TOW</span>
+          <div class="prod-name">БИГТОУ</div>
+          <div class="prod-desc">Заказ эвакуатора по геолокации — клиент ставит точку на карте, диспетчер получает заявку мгновенно</div>
+        </div>
+        <div class="prod-body">
+          <ul class="prod-list">
+            <li>Клиент отмечает точку на карте — заявка с адресом и телефоном сразу приходит диспетчеру в Telegram</li>
+            <li>Ориентировочная стоимость эвакуации считается на лету, ещё до звонка</li>
+            <li>Выбор удобного способа связи: VK, Telegram, звонок сейчас или ожидание диспетчера</li>
+            <li>Вся инфраструктура в России — сайт работает стабильно, без VPN и блокировок</li>
+          </ul>
+          <a href="https://bigtow.ru/" class="btn btn-outline" target="_blank" onclick="ym(108697060,'reachGoal','click_bigtow')">Перейти на сайт →</a>
+        </div>
+      </div>
     </div>
 
     <div class="ready-block reveal">
@@ -2063,6 +2118,36 @@ footer {
         <p class="ready-block-text">Объясните задачу — я сделаю под ключ: бот, сервис, автоматизацию процессов. Без погружения в технологии с вашей стороны.</p>
       </div>
       <a href="#contacts" class="btn btn-primary" style="flex-shrink:0" onclick="ym(108697060,'reachGoal','click_ready_solution')">Хочу готовое решение →</a>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ════════════════ REVIEWS ═══════════════ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="tag reveal" style="margin-bottom:32px">Отзывы</div>
+    <h2 class="section-title reveal" style="margin-bottom:16px">
+      МНЕ НЕ НУЖНО<br/>
+      <span class="outline">ВЕРИТЬ НА СЛОВО</span>
+    </h2>
+    <p style="font-size:17px; color:var(--muted); margin-bottom:64px; max-width:560px" class="reveal">
+      Сергей — владелец БИГТОУ — о том, как прошла разработка сервиса и что получилось в итоге.
+    </p>
+
+    <div class="reviews-layout">
+      <div class="review-video reveal">
+        <video controls poster="bigtow-review-poster.jpg" style="width:100%; display:block; border-radius:3px; border:1px solid var(--border); background:var(--surface)">
+          <source src="bigtow-review.mp4" type="video/mp4">
+        </video>
+        <div class="review-video-caption">Сергей, БИГТОУ — эвакуатор в Зеленограде и Москве</div>
+      </div>
+
+      <div class="review-thanks-grid reveal reveal-delay-1">
+        <div class="review-thanks-item"><img src="thanks1.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+        <div class="review-thanks-item"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
+      </div>
     </div>
   </div>
 </section>
