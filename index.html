@@ -1087,9 +1087,12 @@ nav {
 }
 .reviews-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: start;
+}
+@media (max-width: 1024px) and (min-width: 769px) {
+  .reviews-layout { grid-template-columns: repeat(2, 1fr); }
 }
 .review-caption {
   margin-top: 12px;
@@ -2253,6 +2256,11 @@ footer {
         <div class="review-item reveal reveal-delay-2">
           <div class="review-media"><img src="thanks2.jpg" alt="Благодарность клиента" loading="lazy" /></div>
           <div class="review-caption">ООО «ВайТай»</div>
+        </div>
+
+        <div class="review-item reveal reveal-delay-3">
+          <div class="review-media"><img src="thanks3.jpg" alt="Благодарственное письмо компании БизнесБас Сервис" loading="lazy" /></div>
+          <div class="review-caption">ООО «БизнесБас Сервис»</div>
         </div>
       </div>
       <button class="reviews-arrow reviews-arrow-next" aria-label="Следующий отзыв" onclick="reviewsScroll(1)">›</button>
