@@ -1111,6 +1111,26 @@ nav {
   align-items: center;
   justify-content: center;
 }
+.review-media img { cursor: zoom-in; transition: transform .25s; }
+.review-media img:hover { transform: scale(1.03); }
+.lightbox {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(0,0,0,.88);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px; cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain; background: #fff;
+  border-radius: 3px; box-shadow: 0 10px 60px rgba(0,0,0,.6);
+}
+.lightbox-close {
+  position: absolute; top: 14px; right: 18px;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.4); background: rgba(0,0,0,.4);
+  color: #fff; font-size: 26px; line-height: 1; cursor: pointer;
+}
 .review-media video,
 .review-media img {
   width: 100%;
@@ -2722,6 +2742,32 @@ const countObserver = new IntersectionObserver(entries => {
   });
 });
 document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+/* ── Reviews lightbox ─────────── */
+(function () {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  const btn = document.createElement('button');
+  btn.className = 'lightbox-close';
+  btn.setAttribute('aria-label', 'Закрыть');
+  btn.textContent = '×';
+  const lbImg = document.createElement('img');
+  lb.append(btn, lbImg);
+  document.body.appendChild(lb);
+  const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+  document.querySelectorAll('.review-media img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 
 /* ── Reviews carousel (mobile) ─────────── */
 function reviewsScroll(dir) {
